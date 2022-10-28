@@ -10,7 +10,7 @@ const useSocket = roomId => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    socketRef.current = io('localhost:5000', { query: { roomId } });
+    socketRef.current = io(process.env.REACT_APP_WS_SERVER, { query: { roomId } });
 
     socketRef.current.on('notify-move', arg => {
       setIsTurn(!(arg === socketRef.current.id));
